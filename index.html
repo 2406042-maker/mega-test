@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Rental - Rental Sepeda Garut Terbaik & Terlengkap</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandGreen: '#059669',
+                        brandGreenDark: '#047857',
+                        brandGreenLight: '#ecfdf5',
+                        brandOrange: '#f97316',
+                        brandOrangeDark: '#ea580c',
+                        brandOrangeLight: '#fff7ed',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom animations and pattern styling */
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 3s infinite ease-in-out;
+        }
+        .qris-pattern {
+            background-color: #ffffff;
+            background-image:  radial-gradient(#e5e7eb 1px, transparent 1px), radial-gradient(#e5e7eb 1px, #ffffff 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full transition-all duration-300 ease-in-out opacity-0 flex items-center bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 max-w-sm">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-xl mr-3"></i>
+        <span id="toast-message" class="text-sm font-medium">Pesan pemberitahuan</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-emerald-600/30 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-bicycle text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-slate-900 block leading-none">
+                            MEGA <span class="text-emerald-600">RENTAL</span>
+                        </span>
+                        <span class="text-xs font-semibold tracking-wider text-orange-500 uppercase">Sewa Sepeda Garut</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                    <a href="#stok" class="hover:text-emerald-600 transition-colors">Stok Sepeda</a>
+                    <a href="#harga" class="hover:text-emerald-600 transition-colors">Daftar Harga</a>
+                    <a href="#qris" class="hover:text-emerald-600 transition-colors">Pembayaran QRIS</a>
+                    <a href="#kalkulator" class="hover:text-emerald-600 transition-colors">Sewa & Kalkulator</a>
+                    <a href="#aturan" class="hover:text-emerald-600 transition-colors">Aturan Keterlambatan</a>
+                    <a href="#lokasi" class="hover:text-emerald-600 transition-colors">Lokasi</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://wa.me/6289525054196" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>0895-2505-4196</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#stok" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Stok Sepeda</a>
+            <a href="#harga" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Daftar Harga</a>
+            <a href="#qris" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Pembayaran QRIS</a>
+            <a href="#kalkulator" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Kalkulator Sewa</a>
+            <a href="#aturan" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Aturan Keterlambatan</a>
+            <a href="#lokasi" class="block px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">Lokasi & Jam Operasional</a>
+            <a href="https://wa.me/6289525054196" target="_blank" rel="noopener noreferrer" class="block text-center bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-md">
+                <i class="fa-brands fa-whatsapp mr-2"></i>Hubungi WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-900 text-white py-16 md:py-24">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-24 w-96 h-96 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold text-xs sm:text-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>Rental Sepeda MTB & Tandem Garut</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Gowes Seru, <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-orange-400 bg-clip-text text-transparent">
+                            Harga Bersahabat!
+                        </span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Gowes Lebih Ringan, Perjalanan Lebih Nyaman! Nikmati keindahan pemandangan Garut dengan armada sepeda Mountain Bike (MTB) & Tandem pilihan yang senantiasa terawat dan siap pakai.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#kalkulator" class="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base px-8 py-4 rounded-xl shadow-lg shadow-orange-500/30 transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Hitung & Sewa Sekarang</span>
+                        </a>
+                        <a href="#harga" class="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-base px-8 py-4 rounded-xl transition-all">
+                            <i class="fa-solid fa-tags text-emerald-400"></i>
+                            <span>Lihat Daftar Harga</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800 text-left">
+                        <div class="p-3 rounded-lg bg-slate-800/50">
+                            <p class="text-xs text-slate-400">Pilihan Sepeda</p>
+                            <p class="text-lg font-bold text-emerald-400">MTB & Tandem</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-800/50">
+                            <p class="text-xs text-slate-400">Harga Mulai</p>
+                            <p class="text-lg font-bold text-orange-400">Rp 15.000</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-800/50">
+                            <p class="text-xs text-slate-400">Toleransi Ambil</p>
+                            <p class="text-lg font-bold text-slate-200">Max 30 Mnt</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-6 rounded-3xl shadow-2xl">
+                        <div class="absolute -top-3 -right-3 bg-orange-500 text-white font-black text-xs px-4 py-1.5 rounded-full shadow-lg">
+                            BEST SELLER GARUT
+                        </div>
+                        <div class="overflow-hidden rounded-2xl mb-5 border border-slate-700">
+                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80" alt="Sepeda MTB Garut" class="w-full h-56 object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x500/059669/ffffff?text=Mega+Rental+Garut'">
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-white">Sepeda MTB Single & Tandem</h3>
+                                <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-md border border-emerald-500/30">Leles Garut</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Armada aluminium alloy ringan, rem pengereman pakem hydraulic disc brake, cocok untuk rute datar maupun tanjakan.</p>
+                            
+                            <div class="pt-3 flex items-center justify-between border-t border-slate-700">
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Sewa 3 Jam (Paket Rombongan)</span>
+                                    <span class="text-xl font-black text-emerald-400">Rp 25.000 <span class="text-xs font-normal text-slate-400">/ unit</span></span>
+                                </div>
+                                <a href="#kalkulator" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all">
+                                    Pesan Sekarang
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-time Stock Information Section -->
+    <section id="stok" class="py-12 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-emerald-600 font-extrabold text-xs tracking-wider uppercase mb-1">
+                        <i class="fa-solid fa-signal animate-pulse"></i> Update Stok Hari Ini
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Ketersediaan Unit Sepeda</h2>
+                </div>
+                <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-xl text-sm font-semibold border border-emerald-200 w-fit">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Sistem Auto-Rilis Stok jika Telat >30 Mnt</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Stock Card 1: Sepeda Single -->
+                <div class="relative overflow-hidden bg-gradient-to-r from-emerald-900 to-emerald-800 text-white rounded-2xl p-6 shadow-xl border border-emerald-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center sm:text-left">
+                        <span class="bg-emerald-500/30 text-emerald-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Favorit Perorangan & Grup</span>
+                        <h3 class="text-2xl font-black">Sepeda MTB Single</h3>
+                        <p class="text-xs text-emerald-200">Frame Alloy Ringan • Rem Pengereman Disc Brake • Helm & Kunci Gratis</p>
+                        <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                            <span class="text-xs bg-white/10 px-3 py-1 rounded-lg">Harga Mulai: <strong class="text-amber-300">Rp 15.000</strong></span>
+                            <span class="text-xs bg-white/10 px-3 py-1 rounded-lg">3 Jam: <strong class="text-amber-300">Rp 30.000</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center min-w-[160px]">
+                        <span class="text-xs font-semibold text-emerald-200 block uppercase">Status Unit</span>
+                        <div class="text-4xl font-black text-white my-1">19 <span class="text-lg font-normal text-emerald-200">Unit</span></div>
+                        <span class="inline-block bg-emerald-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-circle-check mr-1"></i> READY STOK
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Stock Card 2: Sepeda Tandem -->
+                <div class="relative overflow-hidden bg-gradient-to-r from-orange-900 to-amber-900 text-white rounded-2xl p-6 shadow-xl border border-orange-700 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center sm:text-left">
+                        <span class="bg-orange-500/30 text-orange-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Spesial Pasangan & Keluarga</span>
+                        <h3 class="text-2xl font-black">Sepeda Tandem</h3>
+                        <p class="text-xs text-orange-200">Kapasitas 2 Orang • Gowes Bersama Lebih Kompak & Seru</p>
+                        <div class="pt-2 flex items-center justify-center sm:justify-start gap-3">
+                            <span class="text-xs bg-white/10 px-3 py-1 rounded-lg">Harga Mulai: <strong class="text-amber-300">Rp 40.000</strong></span>
+                            <span class="text-xs bg-white/10 px-3 py-1 rounded-lg">Unit Terbatas</span>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-center min-w-[160px]">
+                        <span class="text-xs font-semibold text-orange-200 block uppercase">Status Unit</span>
+                        <div class="text-4xl font-black text-white my-1">2 <span class="text-lg font-normal text-orange-200">Unit</span></div>
+                        <span class="inline-block bg-amber-400 text-slate-950 text-xs font-black px-3 py-1 rounded-full">
+                            <i class="fa-solid fa-fire mr-1"></i> READY STOK
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete Pricing Tables Section -->
+    <section id="harga" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-orange-500 font-extrabold text-xs uppercase tracking-widest bg-orange-100 px-3 py-1 rounded-full">Transparan & Terjangkau</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Daftar Harga Sewa Lengkap</h2>
+                <p class="text-slate-600 mt-2">Pilih durasi sewa yang paling pas untuk rencana liburan atau gowes santai Anda di Garut.</p>
+            </div>
+
+            <!-- Price Tables Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Single Bike Pricing Card -->
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden flex flex-col">
+                    <div class="bg-emerald-600 p-6 text-white flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-200 uppercase tracking-wider">Armada Utama</span>
+                            <h3 class="text-2xl font-black">Sepeda Single (MTB)</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-bicycle"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider border-b border-slate-100 pb-2">Tarif Per Durasi</p>
+                            
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">1 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 15.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">2 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 25.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 px-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-base">3 Jam</span>
+                                    <span class="bg-orange-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">BEST VALUE</span>
+                                </div>
+                                <span class="font-black text-emerald-700 text-xl">Rp 30.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">4 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 40.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">6 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 50.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">12 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 70.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">24 Jam (Full Day)</span>
+                                <span class="font-bold text-emerald-600 text-xl">Rp 80.000</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <a href="#kalkulator" onclick="selectBikeType('single')" class="w-full inline-block text-center bg-slate-900 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition-colors">
+                                Pilih Sepeda Single
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tandem Bike Pricing Card -->
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-md overflow-hidden flex flex-col">
+                    <div class="bg-orange-500 p-6 text-white flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-orange-200 uppercase tracking-wider">Armada Pasangan</span>
+                            <h3 class="text-2xl font-black">Sepeda Tandem</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <p class="text-xs text-slate-500 font-medium uppercase tracking-wider border-b border-slate-100 pb-2">Tarif Per Durasi (2 Orang)</p>
+                            
+                            <div class="flex justify-between items-center py-3 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">1 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 40.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 border-b border-slate-100">
+                                <span class="font-medium text-slate-700">2 Jam</span>
+                                <span class="font-bold text-slate-900 text-lg">Rp 60.000</span>
+                            </div>
+                            <div class="flex justify-between items-center py-3 px-4 rounded-2xl bg-orange-50 border border-orange-200 text-orange-900">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold text-base">3 Jam</span>
+                                    <span class="bg-emerald-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">REKOMENDASI</span>
+                                </div>
+                                <span class="font-black text-orange-600 text-xl">Rp 70.000</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 mt-6">
+                                <div class="flex items-start gap-3">
+                                    <i class="fa-solid fa-lightbulb text-amber-500 text-lg mt-0.5"></i>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Sepeda Tandem sangat cocok untuk momen gowes berdua bersama teman, pasangan, atau anak. Stok terbatas hanya 2 unit, disarankan pesan terlebih dahulu.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-100">
+                            <a href="#kalkulator" onclick="selectBikeType('tandem')" class="w-full inline-block text-center bg-slate-900 hover:bg-orange-500 text-white font-bold py-3 rounded-xl transition-colors">
+                                Pilih Sepeda Tandem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Discount Package Callout -->
+            <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-emerald-800 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
+                    <div class="space-y-3 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-orange-500 text-white text-xs font-black px-3 py-1 rounded-full uppercase">
+                            <i class="fa-solid fa-fire"></i> Hemat Banyak untuk Rombongan
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-black">Paket Rombongan Sepeda Single (Durasi 3 Jam)</h3>
+                        <p class="text-slate-300 text-sm max-w-2xl">
+                            Makin banyak teman yang diajak gowes, makin murah harga sewa per unitnya! Diskon dihitung otomatis pada kalkulator sewa.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full lg:w-auto min-w-[320px]">
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center">
+                            <span class="text-xs text-slate-300 block font-medium">3 - 5 Sepeda</span>
+                            <span class="text-xl font-black text-emerald-400 my-1 block">Rp 28.000</span>
+                            <span class="text-[10px] text-slate-300">/ unit (Hemat 2k/unit)</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md border border-orange-500/40 rounded-2xl p-4 text-center relative">
+                            <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full">POPULER</span>
+                            <span class="text-xs text-slate-300 block font-medium">6 - 9 Sepeda</span>
+                            <span class="text-xl font-black text-amber-300 my-1 block">Rp 27.000</span>
+                            <span class="text-[10px] text-slate-300">/ unit (Hemat 3k/unit)</span>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md border border-emerald-400/50 rounded-2xl p-4 text-center">
+                            <span class="text-xs text-slate-300 block font-medium">10+ Sepeda</span>
+                            <span class="text-xl font-black text-emerald-300 my-1 block">Rp 25.000</span>
+                            <span class="text-[10px] text-slate-300">/ unit (Hemat 5k/unit)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QRIS Payment Section -->
+    <section id="qris" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-red-600 font-extrabold text-xs uppercase tracking-widest bg-red-100 px-3 py-1 rounded-full">
+                    <i class="fa-solid fa-qrcode mr-1"></i> Pembayaran Digital Serba Praktis
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Bayar Instan Pakai QRIS Resmi</h2>
+                <p class="text-slate-600 mt-2">Mendukung semua aplikasi Mobile Banking & E-Wallet berlogo QRIS di seluruh Indonesia tanpa biaya tambahan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md bg-white border-2 border-slate-200 rounded-3xl p-6 shadow-2xl relative overflow-hidden qris-pattern">
+                        <div class="h-2 bg-red-600 w-full absolute top-0 left-0"></div>
+
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
+                            <div class="flex items-center gap-2">
+                                <span class="font-black text-2xl tracking-tighter text-slate-900">QR<span class="text-red-600">IS</span></span>
+                                <div class="text-[9px] font-bold text-slate-600 leading-tight border-l-2 border-slate-300 pl-2">
+                                    QR Code Standar<br>Pembayaran Nasional
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1 bg-red-50 text-red-600 px-2.5 py-1 rounded-md border border-red-200 text-xs font-black">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <span>GPN</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center my-3">
+                            <h3 class="text-xl font-black text-slate-900 tracking-wide uppercase">RENTAL SEPEDA MTB</h3>
+                            <div class="mt-1 flex items-center justify-center gap-2">
+                                <span class="text-xs font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-300">
+                                    NMID: ID1026570855555
+                                </span>
+                                <button onclick="copyToClipboard('ID1026570855555', 'NMID QRIS')" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded transition-colors">
+                                    <i class="fa-solid fa-copy mr-1"></i>Salin
+                                </button>
+                            </div>
+                            <p class="text-xs font-bold text-slate-500 mt-1">Kode: A01</p>
+                        </div>
+
+                        <div class="my-4 p-4 bg-white rounded-2xl border-2 border-slate-900 shadow-inner flex flex-col items-center justify-center relative">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=00020101021126580014ID.LINKAJA.WWW01189360091430000000005204599953033605802ID5918RENTAL SEPEDA MTB6005GARUT61054415263041234" alt="QRIS Rental Sepeda MTB" class="w-56 h-56 object-contain rounded-lg">
+                            <span class="mt-2 text-[11px] font-black tracking-widest text-slate-800 uppercase">SATU QRIS UNTUK SEMUA</span>
+                            <span class="text-[9px] text-slate-500">Cek aplikasi penyelenggara di: www.aspi-qris.id</span>
+                        </div>
+
+                        <div class="mt-4 bg-gradient-to-r from-red-600 to-rose-700 text-white p-3 rounded-2xl text-xs space-y-1">
+                            <div class="font-extrabold text-amber-200">Cara bayar dengan QRIS:</div>
+                            <div class="grid grid-cols-3 text-center gap-1 pt-1 text-[10px] font-semibold">
+                                <div class="bg-white/10 p-1.5 rounded-lg">
+                                    <i class="fa-solid fa-mobile-screen block text-sm mb-1"></i>
+                                    1. Buka Aplikasi
+                                </div>
+                                <div class="bg-white/10 p-1.5 rounded-lg">
+                                    <i class="fa-solid fa-expand block text-sm mb-1"></i>
+                                    2. Scan QRIS
+                                </div>
+                                <div class="bg-white/10 p-1.5 rounded-lg">
+                                    <i class="fa-solid fa-check-circle block text-sm mb-1"></i>
+                                    3. Bayar & Konfirmasi
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 text-[9px] text-slate-400 flex justify-between px-1">
+                            <span>Dicetak oleh: 93600915</span>
+                            <span>Versi cetak: 1.0.28.09.26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold text-emerald-900 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                            Kenapa Bayar Pakai QRIS di Mega Rental?
+                        </h3>
+                        <ul class="mt-3 space-y-2 text-sm text-emerald-800">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Praktis & Bebas Kembalian:</strong> Tidak perlu repot membawa uang tunai saat gowes.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Terhubung Ke Semua Aplikasi:</strong> Bisa di-scan menggunakan GoPay, OVO, DANA, ShopeePay, LinkAja, maupun M-Banking.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Konfirmasi Otomatis via WhatsApp:</strong> Lampirkan bukti bayar langsung ke admin kami.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Mendukung Pembayaran Dari:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-wallet text-blue-500"></i> GoPay
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-wallet text-purple-600"></i> OVO
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-wallet text-sky-500"></i> DANA
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-bag-shopping text-orange-500"></i> ShopeePay
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-link text-red-500"></i> LinkAja
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-building-columns text-blue-800"></i> BCA Mobile
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-building-columns text-yellow-600"></i> Mandiri Livin
+                            </span>
+                            <span class="bg-slate-100 border border-slate-200 font-bold text-slate-700 px-3.5 py-2 rounded-xl text-xs flex items-center gap-2">
+                                <i class="fa-solid fa-building-columns text-blue-600"></i> BRImo
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="#kalkulator" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition-all">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Hitung & Bayar via QRIS</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules & Late Tolerance Policy Section -->
+    <section id="aturan" class="py-12 bg-amber-50/50 border-y border-amber-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-amber-200 shadow-md">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+                    <div class="space-y-1">
+                        <span class="text-amber-600 font-black text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full inline-block">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Penting Diketahui
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Ketentuan & Toleransi Keterlambatan</h2>
+                        <p class="text-slate-600 text-sm">Harap perhatikan batas waktu pengambilan dan durasi pengembalian unit demi kenyamanan bersama.</p>
+                    </div>
+                    <a href="https://wa.me/6289525054196?text=Halo%20Admin%20Mega%20Rental,%20saya%20ingin%20konfirmasi%20keterlambatan%20sepeda." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold px-5 py-3 rounded-xl shadow transition-all shrink-0">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Konfirmasi Telat ke Admin</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                    <!-- Rule 1: Pickup Tolerance & Auto Stock Release -->
+                    <div class="p-5 rounded-2xl bg-amber-50/80 border border-amber-200 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shrink-0 font-bold">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-extrabold text-slate-900 text-base">Toleransi Ambil Sepeda (Max 30 Mnt)</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Batas toleransi terlambat mengambil sepeda dari jam booking adalah <strong>maksimal 30 menit</strong>. Jika melewati 30 menit tanpa konfirmasi, status booking otomatis dibatalkan dan <strong>stok kembali tersedia secara otomatis</strong> untuk calon penyewa lain.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2: Late Return Fine -->
+                    <div class="p-5 rounded-2xl bg-rose-50/80 border border-rose-200 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rose-600 text-white flex items-center justify-center text-xl shrink-0 font-bold">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h4 class="font-extrabold text-slate-900 text-base">Denda Telat Kembalikan (>30 Mnt)</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Apabila durasi pemakaian sepeda melebihi batas sewa lebih dari 30 menit, penyewa akan dikenakan denda keterlambatan sebesar <strong>Rp 15.000</strong>. Mohon selalu konfirmasikan ke Admin jika terpaksa memperpanjang waktu gowes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Calculator & Booking Section -->
+    <section id="kalkulator" class="py-16 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                    <i class="fa-solid fa-calculator mr-1"></i> Hitung Cepat & Transparan
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black mt-2">Kalkulator Sewa & Pemesanan</h2>
+                <p class="text-slate-400 mt-2">Simulasikan harga total, dapatkan diskon rombongan otomatis, dan pilih metode bayar QRIS atau COD.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                <!-- Calculator Form -->
+                <div class="lg:col-span-7 bg-slate-800 border border-slate-700 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+                    <h3 class="text-xl font-bold text-white border-b border-slate-700 pb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-emerald-400"></i> Form Pilihan Sewa
+                    </h3>
+
+                    <!-- Customer Info -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Nama Pemesan</label>
+                            <input type="text" id="cust-name" placeholder="Contoh: Budi Santoso" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">No. WhatsApp</label>
+                            <input type="tel" id="cust-phone" placeholder="Contoh: 081234567890" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                    </div>
+
+                    <!-- Date & Time -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Tanggal Sewa</label>
+                            <input type="date" id="rental-date" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Jam Mulai Booking</label>
+                            <input type="time" id="rental-time" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                    </div>
+
+                    <!-- Late Policy Alert inside Form -->
+                    <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs space-y-1">
+                        <div class="font-bold flex items-center gap-1.5 text-amber-400">
+                            <i class="fa-solid fa-clock text-sm"></i> Toleransi Keterlambatan Pengambilan (Max 30 Mnt)
+                        </div>
+                        <p class="text-[11px] leading-relaxed text-amber-200/90">
+                            Pengambilan sepeda yang telat lebih dari 30 menit dari jam booking tanpa konfirmasi akan membatalkan pesanan & stok otomatis dikembalikan ke sistem. Telat mengembalikan >30 menit dikenakan denda Rp 15.000.
+                        </p>
+                    </div>
+
+                    <!-- Bike Type Selection -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Pilih Jenis Sepeda</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" id="btn-type-single" onclick="setBikeType('single')" class="p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 text-white font-bold text-left transition-all flex items-center justify-between">
+                                <div>
+                                    <span class="block text-sm">Sepeda Single</span>
+                                    <span class="text-[11px] text-emerald-400 font-normal">Ready 19 Unit</span>
+                                </div>
+                                <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+                            </button>
+                            <button type="button" id="btn-type-tandem" onclick="setBikeType('tandem')" class="p-4 rounded-2xl border-2 border-slate-700 bg-slate-900 text-slate-400 font-bold text-left transition-all flex items-center justify-between hover:border-slate-600">
+                                <div>
+                                    <span class="block text-sm">Sepeda Tandem</span>
+                                    <span class="text-[11px] text-orange-400 font-normal">Ready 2 Unit</span>
+                                </div>
+                                <i class="fa-solid fa-circle text-slate-700 text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Duration Select -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Durasi Sewa</label>
+                        <select id="rental-duration" onchange="calculateTotal()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500">
+                        </select>
+                    </div>
+
+                    <!-- Quantity Input -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-xs font-semibold text-slate-300 uppercase">Jumlah Unit</label>
+                            <span id="stock-info-text" class="text-xs text-emerald-400 font-medium">Batas stok: Max 19 unit</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick="adjustQty(-1)" class="w-12 h-12 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-black text-lg transition-colors flex items-center justify-center">
+                                -
+                            </button>
+                            <input type="number" id="rental-qty" value="1" min="1" max="19" onchange="calculateTotal()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-center text-white font-bold text-lg focus:outline-none focus:border-emerald-500">
+                            <button type="button" onclick="adjustQty(1)" class="w-12 h-12 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-black text-lg transition-colors flex items-center justify-center">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Toggle -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Pilih Metode Pembayaran</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer border-2 border-emerald-500 bg-emerald-500/10 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-white transition-all" id="pay-method-qris-label">
+                                <input type="radio" name="payMethod" value="qris" checked onchange="updatePayMethodSelection()" class="accent-emerald-500">
+                                <div>
+                                    <span>Bayar via QRIS</span>
+                                    <span class="block text-[10px] text-emerald-400 font-normal">Scan All E-Wallet / Bank</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-slate-300 transition-all" id="pay-method-cod-label">
+                                <input type="radio" name="payMethod" value="cod" onchange="updatePayMethodSelection()" class="accent-emerald-500">
+                                <div>
+                                    <span>Bayar di Tempat (COD)</span>
+                                    <span class="block text-[10px] text-slate-400 font-normal">Bayar Tunai Pas Ambil</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Price Calculation Breakdown Card -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 sticky top-28">
+                    <h3 class="text-xl font-bold text-white border-b border-slate-700 pb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-receipt text-orange-400"></i> Rincian Tagihan
+                    </h3>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Jenis Sepeda</span>
+                            <span id="summary-bike-type" class="font-bold text-white">Sepeda Single</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Durasi Sewa</span>
+                            <span id="summary-duration" class="font-bold text-white">1 Jam</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Jumlah Unit</span>
+                            <span id="summary-qty" class="font-bold text-white">1 Unit</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Harga Normal/Unit</span>
+                            <span id="summary-unit-price" class="font-bold text-white">Rp 15.000</span>
+                        </div>
+
+                        <!-- Group Discount Alert Banner -->
+                        <div id="discount-banner" class="hidden p-3.5 rounded-xl bg-orange-500/20 border border-orange-500/40 text-orange-300 text-xs space-y-1">
+                            <div class="font-bold flex items-center gap-1.5 text-orange-400">
+                                <i class="fa-solid fa-gift text-sm"></i> Paket Rombongan Aktif!
+                            </div>
+                            <div id="discount-banner-desc">Diskon khusus sewa 3 jam perorangan terpasang.</div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-700 flex justify-between items-end">
+                            <div>
+                                <span class="text-xs text-slate-400 block uppercase font-bold">Total Pembayaran</span>
+                                <span class="text-xs text-emerald-400 font-semibold" id="summary-pay-type-text">Metode: QRIS Digital</span>
+                            </div>
+                            <div class="text-right">
+                                <span id="summary-total" class="text-3xl font-black text-emerald-400">Rp 15.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="button" onclick="handleBookingSubmit()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-emerald-600/30 transition-all text-base flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span id="submit-btn-text">Lanjut Pembayaran QRIS</span>
+                    </button>
+
+                    <p class="text-[11px] text-slate-400 text-center leading-normal">
+                        <i class="fa-solid fa-lock text-emerald-400 mr-1"></i> Transaksi Anda aman. Pesanan langsung dikonfirmasi oleh Admin Mega Rental Garut.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages & Features Section -->
+    <section id="keunggulan" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-emerald-600 font-extrabold text-xs uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Kualitas Terjamin</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2">Keunggulan Mega Rental Garut</h2>
+                <p class="text-slate-600 mt-2">Kami selalu mengutamakan keselamatan, kenyamanan, dan pengalaman bersepeda terbaik bagi Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Advantage 1 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Frame Alloy Ringan</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Sepeda berbahan Aluminium Alloy berkualitas tinggi yang sangat ringan dikayuh sehingga tidak cepat membuat lelah.
+                    </p>
+                </div>
+
+                <!-- Advantage 2 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Komponen Berkualitas</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Dilengkapi Shimano drivetrain serta pengereman Hydraulic Disc Brake pakem untuk medan datar maupun turunan.
+                    </p>
+                </div>
+
+                <!-- Advantage 3 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Servis Rutin Setiap Hari</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Seluruh rantai, tekanan ban, dan rem selalu diperiksa dan diservis berkala sebelum diserahkan ke pelanggan.
+                    </p>
+                </div>
+
+                <!-- Advantage 4 -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Rekomendasi Rute Gowes</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Gratis konsultasi rute menarik di Leles, Situ Bagendit, hingga pemandangan persawahan eksotis di Garut.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Operating Hours Section -->
+    <section id="lokasi" class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-orange-500 font-extrabold text-xs uppercase tracking-widest bg-orange-100 px-3 py-1 rounded-full">Kunjungi Markas Kami</span>
+                    <h2 class="text-3xl font-black text-slate-900">Lokasi & Jam Operasional</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Alamat Lengkap</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed mt-1">
+                                    Perumahan Koriah Toyibah, Blok N N2, Haruman, Kec. Leles, Kabupaten Garut, Jawa Barat 44152
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Jam Operasional</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed mt-1">
+                                    <strong>Setiap Hari:</strong> 06.00 WIB - 18.00 WIB<br>
+                                    <span class="text-xs text-emerald-600 font-semibold">(Bisa request pengambilan lebih awal via WA)</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg shrink-0 mt-1">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">Kontak WhatsApp</h4>
+                                <p class="text-sm text-slate-600 mt-1">
+                                    <a href="https://wa.me/6289525054196" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 font-semibold">0895-2505-4196</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://maps.google.com/?q=Perumahan+Koriah+Toyibah+Blok+N+N2+Haruman+Leles+Garut" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-emerald-600 text-white font-bold px-6 py-3.5 rounded-xl transition-colors">
+                            <i class="fa-solid fa-diamond-turn-right"></i>
+                            <span>Buka Petunjuk Jalan Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-100 rounded-3xl overflow-hidden border border-slate-300 shadow-lg h-96">
+                    <iframe 
+                        title="Peta Lokasi Mega Rental Garut"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.083161042784!2d107.8920!3d-7.0980!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDUnNTIuOCJTIDEwN8KwNTMnMzEuMiJF!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+                        class="w-full h-full border-0" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3 md:col-span-2">
+                    <div class="flex items-center justify-center sm:justify-start gap-2 text-white font-black text-xl">
+                        <i class="fa-solid fa-bicycle text-emerald-500"></i>
+                        <span>MEGA RENTAL GARUT</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-md">
+                        Pusat sewa sepeda MTB & Tandem terpercaya di Kecamatan Leles, Garut. Solusi gowes sehat, seru, hemat, dan mudah dengan pembayaran QRIS.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Navigasi Cepat</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#stok" class="hover:text-emerald-400">Stok Sepeda</a></li>
+                        <li><a href="#harga" class="hover:text-emerald-400">Daftar Harga</a></li>
+                        <li><a href="#qris" class="hover:text-emerald-400">Seksi QRIS</a></li>
+                        <li><a href="#kalkulator" class="hover:text-emerald-400">Kalkulator Sewa</a></li>
+                        <li><a href="#aturan" class="hover:text-emerald-400">Toleransi Keterlambatan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Bantuan & Kontak</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li>
+                            <a href="https://wa.me/6289525054196" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 flex items-center justify-center sm:justify-start gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-emerald-500"></i> 0895-2505-4196
+                            </a>
+                        </li>
+                        <li><i class="fa-solid fa-location-dot text-orange-500 mr-1.5"></i> Leles, Garut, Jabar</li>
+                        <li><i class="fa-solid fa-qrcode text-red-500 mr-1.5"></i> Support QRIS National</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-xs text-center text-slate-500">
+                &copy; 2026 Mega Rental Sepeda Garut. Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6289525054196" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/50 transition-transform transform hover:scale-110 group">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute right-16 bg-slate-900 text-white text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">
+            Chat WhatsApp Kami
+        </span>
+    </a>
+
+    <!-- QRIS Payment Modal -->
+    <div id="qris-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white border border-slate-200 w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col transform scale-95 transition-transform duration-300" id="qris-modal-card">
+            
+            <!-- Modal Header -->
+            <div class="bg-emerald-600 text-white p-5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-qrcode text-xl"></i>
+                    <h3 class="font-extrabold text-lg">Pembayaran QRIS Mega Rental</h3>
+                </div>
+                <button onclick="closeQrisModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 overflow-y-auto space-y-5">
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-1.5 text-xs">
+                    <div class="font-bold text-slate-900 text-sm border-b border-slate-200 pb-1.5 flex justify-between">
+                        <span>Ringkasan Tagihan</span>
+                        <span id="modal-summary-type" class="text-emerald-600">Sepeda Single</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Atas Nama:</span>
+                        <strong id="modal-summary-name" class="text-slate-900">-</strong>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Tanggal & Jam:</span>
+                        <strong id="modal-summary-datetime" class="text-slate-900">-</strong>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Durasi & Jumlah:</span>
+                        <strong id="modal-summary-qty" class="text-slate-900">-</strong>
+                    </div>
+                    <div class="flex justify-between text-slate-900 pt-1 border-t border-slate-200 text-sm">
+                        <span class="font-extrabold">Total Harus Dibayar:</span>
+                        <strong id="modal-summary-total" class="font-black text-emerald-600 text-base">Rp 0</strong>
+                    </div>
+                </div>
+
+                <!-- Late Tolerance Warning inside Modal -->
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-[11px] text-amber-900 space-y-1">
+                    <div class="font-bold flex items-center gap-1 text-amber-800">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Toleransi Keterlambatan Pengambilan (Max 30 Mnt)
+                    </div>
+                    <p>
+                        Harap mengambil unit maksimal 30 menit dari jam booking. Lewat 30 menit tanpa konfirmasi, booking dibatalkan & stok otomatis rilis. Telat kembalikan >30 mnt denda Rp 15.000.
+                    </p>
+                </div>
+
+                <div class="border-2 border-slate-900 rounded-2xl p-4 bg-white text-center qris-pattern relative">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-2">
+                        <span class="font-black text-lg text-slate-900">QR<span class="text-red-600">IS</span></span>
+                        <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">GPN</span>
+                    </div>
+                    
+                    <h4 class="font-black text-sm text-slate-900 uppercase">RENTAL SEPEDA MTB</h4>
+                    <div class="my-1 flex items-center justify-center gap-2">
+                        <span class="text-[11px] font-mono font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border">NMID: ID1026570855555</span>
+                        <button onclick="copyToClipboard('ID1026570855555', 'NMID QRIS')" class="text-[10px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded">
+                            Salin
+                        </button>
+                    </div>
+
+                    <div class="my-3 flex justify-center">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=00020101021126580014ID.LINKAJA.WWW01189360091430000000005204599953033605802ID5918RENTAL SEPEDA MTB6005GARUT61054415263041234" alt="QRIS Code" class="w-48 h-48 object-contain border-2 border-slate-900 p-1 bg-white rounded-lg">
+                    </div>
+                    <p class="text-[10px] font-bold text-slate-600">Scan QRIS di atas melalui M-Banking / E-Wallet Anda</p>
+                </div>
+
+                <div class="space-y-2 text-xs text-slate-600">
+                    <p class="font-bold text-slate-900">Langkah Konfirmasi Pembayaran:</p>
+                    <ol class="list-decimal list-inside space-y-1">
+                        <li>Buka aplikasi E-Wallet/Bank pilihan Anda lalu scan QRIS.</li>
+                        <li>Masukkan nominal persis sesuai tagihan (<strong id="modal-instruction-nominal" class="text-emerald-600">Rp 0</strong>).</li>
+                        <li>Selesaikan transaksi & simpan screenshot bukti transfer.</li>
+                        <li>Klik tombol di bawah ini untuk mengirim rincian sewa & foto bukti bayar ke WhatsApp Admin.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 p-4 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
+                <button onclick="closeQrisModal()" class="w-full sm:w-1/3 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-3 rounded-xl text-xs transition-colors">
+                    Batal
+                </button>
+                <button onclick="confirmAndSendWa()" class="w-full sm:w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3 rounded-xl text-xs shadow-md shadow-emerald-600/30 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Kirim Bukti ke WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Logic -->
+    <script>
+        // Data Structures for Pricing
+        const PRICING_DATA = {
+            single: {
+                name: "Sepeda Single (MTB)",
+                maxStock: 19,
+                rates: [
+                    { duration: 1, label: "1 Jam", price: 15000 },
+                    { duration: 2, label: "2 Jam", price: 25000 },
+                    { duration: 3, label: "3 Jam (Best Value)", price: 30000 },
+                    { duration: 4, label: "4 Jam", price: 40000 },
+                    { duration: 6, label: "6 Jam", price: 50000 },
+                    { duration: 12, label: "12 Jam", price: 70000 },
+                    { duration: 24, label: "24 Jam (Full Day)", price: 80000 }
+                ]
+            },
+            tandem: {
+                name: "Sepeda Tandem",
+                maxStock: 2,
+                rates: [
+                    { duration: 1, label: "1 Jam", price: 40000 },
+                    { duration: 2, label: "2 Jam", price: 60000 },
+                    { duration: 3, label: "3 Jam (Rekomendasi)", price: 70000 }
+                ]
+            }
+        };
+
+        let currentBikeType = 'single';
+        let currentTotalCalculation = 0;
+        let currentBookingDetail = {};
+
+        window.onload = function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('rental-date').value = today;
+            document.getElementById('rental-time').value = "08:00";
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            populateDurationOptions('single');
+            calculateTotal();
+        };
+
+        function selectBikeType(type) {
+            setBikeType(type);
+            const calcSection = document.getElementById('kalkulator');
+            if(calcSection) calcSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function setBikeType(type) {
+            currentBikeType = type;
+            const btnSingle = document.getElementById('btn-type-single');
+            const btnTandem = document.getElementById('btn-type-tandem');
+            const qtyInput = document.getElementById('rental-qty');
+            const stockInfo = document.getElementById('stock-info-text');
+
+            if (type === 'single') {
+                btnSingle.className = "p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-500/10 text-white font-bold text-left transition-all flex items-center justify-between";
+                btnSingle.querySelector('i').className = "fa-solid fa-circle-check text-emerald-400 text-lg";
+
+                btnTandem.className = "p-4 rounded-2xl border-2 border-slate-700 bg-slate-900 text-slate-400 font-bold text-left transition-all flex items-center justify-between hover:border-slate-600";
+                btnTandem.querySelector('i').className = "fa-solid fa-circle text-slate-700 text-lg";
+
+                qtyInput.max = PRICING_DATA.single.maxStock;
+                stockInfo.innerText = "Batas stok: Max 19 unit";
+            } else {
+                btnTandem.className = "p-4 rounded-2xl border-2 border-orange-500 bg-orange-500/10 text-white font-bold text-left transition-all flex items-center justify-between";
+                btnTandem.querySelector('i').className = "fa-solid fa-circle-check text-orange-400 text-lg";
+
+                btnSingle.className = "p-4 rounded-2xl border-2 border-slate-700 bg-slate-900 text-slate-400 font-bold text-left transition-all flex items-center justify-between hover:border-slate-600";
+                btnSingle.querySelector('i').className = "fa-solid fa-circle text-slate-700 text-lg";
+
+                qtyInput.max = PRICING_DATA.tandem.maxStock;
+                stockInfo.innerText = "Batas stok: Max 2 unit";
+            }
+
+            if (parseInt(qtyInput.value) > parseInt(qtyInput.max)) {
+                qtyInput.value = qtyInput.max;
+            }
+
+            populateDurationOptions(type);
+            calculateTotal();
+        }
+
+        function populateDurationOptions(type) {
+            const selectEl = document.getElementById('rental-duration');
+            selectEl.innerHTML = '';
+
+            const rates = PRICING_DATA[type].rates;
+            rates.forEach(rate => {
+                const opt = document.createElement('option');
+                opt.value = rate.duration;
+                opt.text = `${rate.label} - Rp ${formatRupiah(rate.price)}`;
+                selectEl.appendChild(opt);
+            });
+        }
+
+        function adjustQty(delta) {
+            const qtyInput = document.getElementById('rental-qty');
+            let currentVal = parseInt(qtyInput.value) || 1;
+            const maxVal = parseInt(qtyInput.max) || 19;
+
+            currentVal += delta;
+            if (currentVal < 1) currentVal = 1;
+            if (currentVal > maxVal) {
+                currentVal = maxVal;
+                showToast(`Stok maksimal untuk ${PRICING_DATA[currentBikeType].name} adalah ${maxVal} unit.`);
+            }
+
+            qtyInput.value = currentVal;
+            calculateTotal();
+        }
+
+        function updatePayMethodSelection() {
+            const method = document.querySelector('input[name="payMethod"]:checked').value;
+            const qrisLabel = document.getElementById('pay-method-qris-label');
+            const codLabel = document.getElementById('pay-method-cod-label');
+            const submitBtnText = document.getElementById('submit-btn-text');
+            const summaryPayTypeText = document.getElementById('summary-pay-type-text');
+
+            if (method === 'qris') {
+                qrisLabel.className = "cursor-pointer border-2 border-emerald-500 bg-emerald-500/10 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-white transition-all";
+                codLabel.className = "cursor-pointer border-2 border-slate-700 bg-slate-900 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-slate-300 transition-all";
+                submitBtnText.innerText = "Lanjut Pembayaran QRIS";
+                summaryPayTypeText.innerText = "Metode: QRIS Digital";
+            } else {
+                codLabel.className = "cursor-pointer border-2 border-emerald-500 bg-emerald-500/10 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-white transition-all";
+                qrisLabel.className = "cursor-pointer border-2 border-slate-700 bg-slate-900 p-3.5 rounded-2xl flex items-center gap-3 text-sm font-bold text-slate-300 transition-all";
+                submitBtnText.innerText = "Pesan Sekarang (Bayar di Tempat)";
+                summaryPayTypeText.innerText = "Metode: Tunai di Tempat (COD)";
+            }
+        }
+
+        function calculateTotal() {
+            const durationHours = parseInt(document.getElementById('rental-duration').value) || 1;
+            const qty = parseInt(document.getElementById('rental-qty').value) || 1;
+            const discountBanner = document.getElementById('discount-banner');
+            const discountBannerDesc = document.getElementById('discount-banner-desc');
+
+            const bikeConfig = PRICING_DATA[currentBikeType];
+            const rateObj = bikeConfig.rates.find(r => r.duration === durationHours) || bikeConfig.rates[0];
+            
+            let unitPrice = rateObj.price;
+            let total = unitPrice * qty;
+            let discountApplied = false;
+
+            if (currentBikeType === 'single' && durationHours === 3) {
+                if (qty >= 10) {
+                    unitPrice = 25000;
+                    total = unitPrice * qty;
+                    discountApplied = true;
+                    discountBannerDesc.innerText = `🎉 Paket Rombongan 10+ Unit Terpasang! Harga dipotong dari Rp 30.000 menjadi Rp 25.000/unit (Hemat Rp ${formatRupiah((30000 - 25000) * qty)}).`;
+                } else if (qty >= 6) {
+                    unitPrice = 27000;
+                    total = unitPrice * qty;
+                    discountApplied = true;
+                    discountBannerDesc.innerText = `🎉 Paket Rombongan 6-9 Unit Terpasang! Harga dipotong dari Rp 30.000 menjadi Rp 27.000/unit (Hemat Rp ${formatRupiah((30000 - 27000) * qty)}).`;
+                } else if (qty >= 3) {
+                    unitPrice = 28000;
+                    total = unitPrice * qty;
+                    discountApplied = true;
+                    discountBannerDesc.innerText = `🎉 Paket Rombongan 3-5 Unit Terpasang! Harga dipotong dari Rp 30.000 menjadi Rp 28.000/unit (Hemat Rp ${formatRupiah((30000 - 28000) * qty)}).`;
+                }
+            }
+
+            if (discountApplied) {
+                discountBanner.classList.remove('hidden');
+            } else {
+                discountBanner.classList.add('hidden');
+            }
+
+            currentTotalCalculation = total;
+
+            document.getElementById('summary-bike-type').innerText = bikeConfig.name;
+            document.getElementById('summary-duration').innerText = `${durationHours} Jam`;
+            document.getElementById('summary-qty').innerText = `${qty} Unit`;
+            document.getElementById('summary-unit-price').innerText = `Rp ${formatRupiah(unitPrice)}${discountApplied ? ' (Harga Diskon)' : ''}`;
+            document.getElementById('summary-total').innerText = `Rp ${formatRupiah(total)}`;
+        }
+
+        function handleBookingSubmit() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const date = document.getElementById('rental-date').value;
+            const time = document.getElementById('rental-time').value;
+            const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+            const duration = document.getElementById('rental-duration').value;
+            const qty = document.getElementById('rental-qty').value;
+
+            if (!name) {
+                showToast("Harap masukkan Nama Pemesan terlebih dahulu.", true);
+                document.getElementById('cust-name').focus();
+                return;
+            }
+
+            if (!phone) {
+                showToast("Harap masukkan Nomor WhatsApp Anda.", true);
+                document.getElementById('cust-phone').focus();
+                return;
+            }
+
+            currentBookingDetail = {
+                name,
+                phone,
+                date,
+                time,
+                bikeType: PRICING_DATA[currentBikeType].name,
+                duration: `${duration} Jam`,
+                qty: `${qty} Unit`,
+                total: `Rp ${formatRupiah(currentTotalCalculation)}`,
+                payMethod: payMethod === 'qris' ? 'Pembayaran QRIS' : 'Bayar di Tempat (COD)'
+            };
+
+            if (payMethod === 'qris') {
+                openQrisModal();
+            } else {
+                sendBookingToWhatsApp(currentBookingDetail);
+            }
+        }
+
+        function openQrisModal() {
+            document.getElementById('modal-summary-name').innerText = currentBookingDetail.name;
+            document.getElementById('modal-summary-datetime').innerText = `${currentBookingDetail.date} - Jam ${currentBookingDetail.time}`;
+            document.getElementById('modal-summary-type').innerText = currentBookingDetail.bikeType;
+            document.getElementById('modal-summary-qty').innerText = `${currentBookingDetail.duration} (${currentBookingDetail.qty})`;
+            document.getElementById('modal-summary-total').innerText = currentBookingDetail.total;
+            document.getElementById('modal-instruction-nominal').innerText = currentBookingDetail.total;
+
+            const modal = document.getElementById('qris-modal');
+            const card = document.getElementById('qris-modal-card');
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+        }
+
+        function closeQrisModal() {
+            const modal = document.getElementById('qris-modal');
+            const card = document.getElementById('qris-modal-card');
+
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function confirmAndSendWa() {
+            closeQrisModal();
+            sendBookingToWhatsApp(currentBookingDetail);
+        }
+
+        // Fungsi Pembuat Pesan & Pengirim ke WhatsApp Resmi
+        function sendBookingToWhatsApp(data) {
+            const waNumber = "6289525054196";
+            
+            let textMessage = `Halo Admin Mega Rental Garut,\n\n` +
+                `Saya mau konfirmasi pesanan sewa sepeda dengan rincian berikut:\n` +
+                `=================================\n` +
+                `👤 *Nama Pemesan:* ${data.name}\n` +
+                `📱 *No WhatsApp:* ${data.phone}\n` +
+                `📅 *Tanggal Sewa:* ${data.date}\n` +
+                `⏰ *Jam Mulai Booking:* ${data.time} WIB\n` +
+                `🚲 *Jenis Sepeda:* ${data.bikeType}\n` +
+                `⏱️ *Durasi Sewa:* ${data.duration}\n` +
+                `🔢 *Jumlah Unit:* ${data.qty}\n` +
+                `💳 *Metode Bayar:* ${data.payMethod}\n` +
+                `💰 *Total Tagihan:* ${data.total}\n` +
+                `=================================\n` +
+                `⚠️ *Aturan & Catatan Keterlambatan:*\n` +
+                `• *Toleransi Ambil:* Maksimal 30 menit dari jam booking. Jika lewat >30 mnt tanpa konfirmasi, booking batal & stok otomatis kembali tersedia.\n` +
+                `• *Denda Telat Kembalikan:* Telat >30 mnt dari durasi sewa dikenakan denda Rp 15.000.\n` +
+                `• *Harap konfirmasi keterlambatan nya ke whatsapp admin, TerimaKasih.*\n\n`;
+
+            if (data.payMethod.includes('QRIS')) {
+                textMessage += `_Bukti transfer QRIS dilampirkan setelah pesan ini._\n\nMohon diproses & disiapkan unitnya. Terima kasih!`;
+            } else {
+                textMessage += `_Saya akan membayar tunai saat pengambilan di lokasi._\n\nMohon diproses & disiapkan unitnya. Terima kasih!`;
+            }
+
+            // encodeURIComponent memastikan semua karakter unik, emoji, dan spasi aman di URL
+            const encodedMessage = encodeURIComponent(textMessage);
+            const waUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+            
+            // Buka tautan di jendela baru (akan langsung membuka aplikasi WhatsApp)
+            window.open(waUrl, '_blank');
+        }
+
+        function copyToClipboard(text, label) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(`${label} (${text}) berhasil disalin!`);
+                }).catch(() => {
+                    fallbackCopy(text, label);
+                });
+            } else {
+                fallbackCopy(text, label);
+            }
+        }
+
+        function fallbackCopy(text, label) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(`${label} (${text}) berhasil disalin!`);
+        }
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID').format(number);
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = message;
+            
+            if (isError) {
+                toastIcon.className = "fa-solid fa-circle-exclamation text-amber-400 text-xl mr-3";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-xl mr-3";
+            }
+
+            toast.classList.remove('translate-x-full', 'opacity-0');
+            toast.classList.add('translate-x-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0', 'opacity-100');
+                toast.classList.add('translate-x-full', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
